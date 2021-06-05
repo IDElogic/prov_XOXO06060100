@@ -56,36 +56,5 @@ public class Milestone {
 	
 	public Milestone(long l, Object object, LocalDateTime localDateTime) {
 	}
-	
-	@Override
-	public int hashCode() {
-		final long prime = 20;
-		long result = 1;
-		result = prime * result + (long) (id ^ (id >>> 21));
-		return (int) result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Milestone other = (Milestone) obj;
-		if (id != other.id)
-			return false;
-		
-		return true;
-    }
-	public Object getFromMilestone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public Milestone getToMilestone() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }
