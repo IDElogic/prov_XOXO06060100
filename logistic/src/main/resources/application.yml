@@ -1,0 +1,38 @@
+
+ logistics:
+   pricePercent:
+     lessThan30minutes: 10
+     lessThan60minutes: 20
+     lessThan120minutes: 30
+     moreThan120minutes: 40
+
+ spring:           
+  mvc:
+   format:
+      date-time:
+       yyyy-MM-dd HH:mm:ss
+      
+  thymeleaf:
+    cache: false
+    
+
+  jpa:
+   show-sql: true   
+   hibernate:
+     ddl-auto: update
+   open-in-view: false   
+  datasource:
+   password: ida
+   username: antares
+   url: jdbc:postgresql://localhost:5432/xoxo
+  
+ logging:
+  level:
+    org:
+     springframework:
+        security: DEBUG
+        
+ server:
+  error:
+    include-message: always    
+     
