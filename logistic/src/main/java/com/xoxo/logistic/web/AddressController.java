@@ -1,12 +1,9 @@
 package com.xoxo.logistic.web;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,11 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.xoxo.logistic.dto.AddressByExampleDto;
 import com.xoxo.logistic.dto.AddressDto;
 import com.xoxo.logistic.mapper.AddressMapper;
 import com.xoxo.logistic.model.Address;
@@ -42,7 +37,7 @@ public class AddressController {
 	@Autowired
 	AddressRepository addressRepository;
 	
-	private List<Address> addresses = new ArrayList<>();
+	
 			
 		@GetMapping
 		public List<AddressDto> getAll(){
@@ -85,21 +80,5 @@ public class AddressController {
 			}
 		}
 		
-		@PostMapping("/search")
-		public List<AddressDto> getAddresses(@RequestParam(required = false) @RequestBody AddressByExampleDto example, Pageable pageable){
-			String city = null;
-			String countryCode = null;
-			long postalCode = 0;
-			String streetAddress = null;
-			if(city == null && streetAddress == null && countryCode == null && postalCode == 0) {
-			} else {
-				AddressByExampleDto addressByExampleDto = null;
-				Page<Address> page = addressRepository.findAddressesByExample(addressByExampleDto, pageable);
-				addresses = page.getContent();
-				System.out.println(page.getNumber());
-				System.out.println(page.getSize());
-				System.out.println(page.getSort());	
-			}
-			return addressMapper.addressesToDtos(addresses);
-		}
+		
 	}

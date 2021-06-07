@@ -1,5 +1,6 @@
 package com.xoxo.logistic.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,16 @@ public class AddressService {
 	
 	@Autowired 
 	MilestoneService milestoneService;
+	
+private List<Address> allAddresss = new ArrayList<>();
+	
+	{
+		allAddresss.add(new Address(1L,"SE","Malmö","Södra Förstadsgatan", 21428L,124L, 0.0, 0.0));
+		allAddresss.add(new Address(2L,"SE","Jönköping","Ekhagsringen", 55456L,2L, 0.0, 0.0));
+		allAddresss.add(new Address(3L,"SE","Borås"," Sjumilagatan", 50742L,1L, 0.0, 0.0));
+		allAddresss.add(new Address(4L,"SE","Götebörg","Vasagatan",41137,45L, 0.0, 0.0));
+	}
+
 
 	public List<Address> getAllAddresses() {
 		return addressRepository.findAll();

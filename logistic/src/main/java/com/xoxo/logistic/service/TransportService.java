@@ -73,7 +73,7 @@ public class TransportService {
 		Milestone milestoneNow = milestoneService.findById(milestoneId).get();
 		milestoneNow.setPlannedTime(milestoneNow.getPlannedTime().plusMinutes(delayInMinutes));
 		
-		Section section = sectionService.findByTransportAndMilestone(milestoneId, delayInMinutes).get(0);
+		Section section = sectionService.findByTransportAndSectionNumber(transportId, milestoneId).get();
 		Milestone milestoneNext = null;
 		
 		if (section.getFromMilestone().equals(milestoneNow)) {

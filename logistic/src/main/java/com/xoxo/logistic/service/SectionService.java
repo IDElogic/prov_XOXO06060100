@@ -46,10 +46,6 @@ public class SectionService {
 		return sectionRepository.findByTransportAndSectionNumber(id,sectionNumber );
 	}
 	
-	public List<Section>findByTransportAndMilestone(long id, int number) {
-		return sectionRepository.findByTransportAndMilestone(id, number);
-	}
-	
 	public void delete(long id) {
 		sectionRepository.deleteById(id);
 	}

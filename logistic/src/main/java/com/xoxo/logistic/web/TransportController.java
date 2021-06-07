@@ -36,8 +36,8 @@ public class TransportController {
 	private Map<Long, TransportDto> transports = new HashMap<>();
 	
 	{
-		transports.put(1L, new TransportDto(1,100.0, null));
-		transports.put(2L, new TransportDto(2,200.0, null));
+		transports.put(1L, new TransportDto(1, 100.0, null));
+		transports.put(2L, new TransportDto(2, 200.0, null));
 	}
 
 	@PostMapping("/{id}/delay")

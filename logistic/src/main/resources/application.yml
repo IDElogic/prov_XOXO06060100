@@ -1,30 +1,30 @@
 spring: 
-  logistics:
+ logistics:
    pricePercent:
      lessThan30minutes: 10
      lessThan60minutes: 20
      lessThan120minutes: 30
      moreThan120minutes: 40
           
-  mvc:
+ mvc:
    format:
       date-time:
        yyyy-MM-dd HH:mm:ss
       
-  thymeleaf:
+ thymeleaf:
     cache: false   
 
-  jpa:
+ jpa:
    show-sql: true   
    hibernate:
      ddl-auto: create
    open-in-view: false   
-  datasource:
+ datasource:
    password: ida
    username: postgres
    url: jdbc:postgresql://localhost:5432/xoxo
      
-  logging:
+logging:
     level:
       org:
        springframework:

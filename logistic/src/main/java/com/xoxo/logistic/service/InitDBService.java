@@ -10,7 +10,6 @@ import com.xoxo.logistic.model.Milestone;
 import com.xoxo.logistic.model.Transport;
 import com.xoxo.logistic.repository.AddressRepository;
 import com.xoxo.logistic.repository.MilestoneRepository;
-import com.xoxo.logistic.repository.SectionRepository;
 import com.xoxo.logistic.repository.TransportRepository;
 
 @Service
@@ -23,13 +22,10 @@ public class InitDBService {
 	MilestoneRepository milestoneRepository;
 
 	@Autowired
-	SectionRepository sectionRepository;
-
-	@Autowired
 	TransportRepository transportRepository;
 	
 	
-	public Transport init() {
+	public Transport initDb() {
 				
 	Address address1 = addressRepository.save(new Address(1L,"SE","Malmö","Södra Förstadsgatan", 21428L,124L,0.0, 0.0));
 	Address address2 = addressRepository.save(new Address(2L,"SE","Jönköping","Ekhagsringen", 55456L,2L, 0.0, 0.0));
@@ -51,6 +47,7 @@ public class InitDBService {
 	
 	return new Transport();
 	}
+
 }
 
 

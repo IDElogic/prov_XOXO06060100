@@ -24,11 +24,7 @@ public class LogisticApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(20000);
-		System.out.println(25000);
-		System.out.println(30000);	
-		
-			initDBService.init();
+				
 		}
 }
 

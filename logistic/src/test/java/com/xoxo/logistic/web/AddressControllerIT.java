@@ -24,34 +24,31 @@ public class AddressControllerIT {
 	private static final String BASE_URI ="/api/addresses";
 	
 	@Test
-	void testThatCreatedAddressesListed()throws Exception {
+	void testThatCreatedAddressesIsListed()throws Exception {
 		List<AddressDto> addressesBefore = getAllAddresses();
-		AddressDto newAddress = new AddressDto(1L,"SE","Norrköping","Brahegatan", 11230L, 10L, 0.0, 0.0);
+		AddressDto newAddress = new AddressDto(5L,"SE","Norrköping","Brahegatan", 11230L, 10L, 0.0, 0.0);
 		createAddress(newAddress);
 		
 		List<AddressDto> addressesAfter = getAllAddresses();
 		
 		assertThat(addressesAfter.subList(0, addressesBefore.size()))
-			.usingFieldByFieldElementComparator()
+			.usingRecursiveFieldByFieldElementComparator()
 			.containsExactlyElementsOf(addressesBefore);
 		
 		assertThat(addressesAfter.get(addressesAfter.size()-1))
 			.usingRecursiveComparison()
 			.isEqualTo(newAddress);
 	}
-	
-							/*addresses create-must to send a POST ->need an injected webTestClient*/
+								
 	private void createAddress(AddressDto newAddress) {
 		webTestClient
 			.post()
 			.uri(BASE_URI)
 			.bodyValue(newAddress)
 			.exchange()
-			.expectStatus().isOk();
-		
-		
+			.expectStatus().isOk();	
 	}
-								/*getBackAll*/
+								
 	private List<AddressDto> getAllAddresses() {
 		List<AddressDto> responseList = webTestClient
 		.get()
@@ -59,10 +56,25 @@ public class AddressControllerIT {
 		.exchange()
 		.expectStatus().isOk()
 		.expectBodyList(AddressDto.class)
-		 .returnResult().getResponseBody();
+		.returnResult().getResponseBody();
 		
-		Collections.sort(responseList,
-				(a1, a2) -> Long.compare(a1.getId(),a2.getId()));
+		Collections.sort(responseList,(a1, a2) -> Long.compare(a1.getId(),a2.getId()));
 		return responseList;	
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
