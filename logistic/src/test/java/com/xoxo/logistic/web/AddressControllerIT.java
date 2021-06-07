@@ -26,7 +26,7 @@ public class AddressControllerIT {
 	@Test
 	void testThatCreatedAddressesListed()throws Exception {
 		List<AddressDto> addressesBefore = getAllAddresses();
-		AddressDto newAddress = new AddressDto(5L,"SE","Norrköping","Brahegatan", 11230L, 10L, 0.0, 0.0);
+		AddressDto newAddress = new AddressDto(1L,"SE","Norrköping","Brahegatan", 11230L, 10L, 0.0, 0.0);
 		createAddress(newAddress);
 		
 		List<AddressDto> addressesAfter = getAllAddresses();

@@ -37,6 +37,5 @@ public class MilestoneService {
 	
 	public Optional<Milestone> findById(long id) {
 		return milestoneRepository.findById(id);
-	}
-	
+	}	
 }

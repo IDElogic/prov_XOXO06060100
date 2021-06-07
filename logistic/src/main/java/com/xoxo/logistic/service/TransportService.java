@@ -1,11 +1,13 @@
 package com.xoxo.logistic.service;
 
 import java.util.List;
+
 import java.util.Map;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.xoxo.logistic.config.TransportConfigProperties;
 import com.xoxo.logistic.dto.TransportDto;
@@ -14,6 +16,7 @@ import com.xoxo.logistic.model.Section;
 import com.xoxo.logistic.model.Transport;
 import com.xoxo.logistic.repository.TransportRepository;
 
+@Service
 public class TransportService {
 	
 	@Autowired

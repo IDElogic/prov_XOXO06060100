@@ -90,21 +90,14 @@ public class AddressService {
 		return addressRepository.findAll(pageable) ;
 	}
 
-	public Address update(Address dtoToAddress) {
-		return null;
-	}
-
 	public Address save(Address dtoToAddress) {
+		
 		return null;
 	}
 
-	public Address add(Address address) {
-		return address;		
-	}
-
-	public Address addNewAddress(Address address) {
-		return null;
-	}		
+	public Address update(Address dtoToAddress) {
 	
+		return null;
+	}	
 }
 

@@ -83,9 +83,7 @@ public class SectionService {
 
 	public Optional<Milestone> findByMilestoneId(long milestoneId) {
 		return null;
-	}
-	
-		
+	}		
 }
 	
 	

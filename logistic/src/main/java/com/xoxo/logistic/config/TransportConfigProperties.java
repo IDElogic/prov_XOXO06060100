@@ -3,21 +3,21 @@ package com.xoxo.logistic.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix="logistic")
+@ConfigurationProperties(prefix="logistics")
 @Component
 public class TransportConfigProperties {
 
-	private PricePercent pricePercent = new PricePercent();
+		private PricePercent pricePercent = new PricePercent();
+		private boolean test;
 
-	private boolean test;
-
-	public static class PricePercent {
+		public static class PricePercent {
 
 		private int lessThan30minutes;
 		private int lessThan60minutes;
 		private int lessThan120minutes;
 		private int moreThan120minutes;
 
+		
 		public int getLessThan30minutes() {
 			return lessThan30minutes;
 		}

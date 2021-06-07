@@ -69,7 +69,6 @@ public class TransportController {
 		transportService.delete(id);
 	}
 
-	
 	private TransportDto findByIdOrThrow(long id) {		
 			return null;
 	}

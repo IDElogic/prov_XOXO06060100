@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.xoxo.logistic.dto.AddressByExampleDto;
 import com.xoxo.logistic.dto.AddressDto;
 import com.xoxo.logistic.mapper.AddressMapper;
 import com.xoxo.logistic.model.Address;
@@ -46,8 +47,7 @@ public class AddressController {
 		@GetMapping
 		public List<AddressDto> getAll(){
 			return addressMapper.addressesToDtos(addressService.getAllAddresses());
-		}
-		
+		}	
 		
 		@GetMapping("/{id}")
 		public AddressDto getById(@PathVariable long id) {
@@ -86,17 +86,15 @@ public class AddressController {
 		}
 		
 		@PostMapping("/search")
-		public List<AddressDto> getAddresses(
-				@RequestParam(required = false) 
-				String city,
-				String streetAddress, 
-				@RequestBody AddressDto countryCode,
-				@RequestBody AddressDto postalCode, Pageable pageable){
-			if(city == null && streetAddress == null && countryCode == null && postalCode == null) {
+		public List<AddressDto> getAddresses(@RequestParam(required = false) @RequestBody AddressByExampleDto example, Pageable pageable){
+			String city = null;
+			String countryCode = null;
+			long postalCode = 0;
+			String streetAddress = null;
+			if(city == null && streetAddress == null && countryCode == null && postalCode == 0) {
 			} else {
-				Page<Address> page = addressRepository
-				.findByCityAndStreetAddressNameStartingWithIgnoreCaseAndCountryAndPostalCode(
-						city, streetAddress, countryCode, postalCode, pageable);
+				AddressByExampleDto addressByExampleDto = null;
+				Page<Address> page = addressRepository.findAddressesByExample(addressByExampleDto, pageable);
 				addresses = page.getContent();
 				System.out.println(page.getNumber());
 				System.out.println(page.getSize());

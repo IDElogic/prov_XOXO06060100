@@ -2,8 +2,6 @@ package com.xoxo.logistic.service;
 
 import java.time.LocalDateTime;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,6 @@ import com.xoxo.logistic.repository.AddressRepository;
 import com.xoxo.logistic.repository.MilestoneRepository;
 import com.xoxo.logistic.repository.SectionRepository;
 import com.xoxo.logistic.repository.TransportRepository;
-
 
 @Service
 public class InitDBService {
@@ -31,8 +28,8 @@ public class InitDBService {
 	@Autowired
 	TransportRepository transportRepository;
 	
-	@Transactional
-	public void init() {
+	
+	public Transport init() {
 				
 	Address address1 = addressRepository.save(new Address(1L,"SE","Malmö","Södra Förstadsgatan", 21428L,124L,0.0, 0.0));
 	Address address2 = addressRepository.save(new Address(2L,"SE","Jönköping","Ekhagsringen", 55456L,2L, 0.0, 0.0));
@@ -51,8 +48,9 @@ public class InitDBService {
 	newTransport.addSection(null);
 	newTransport.addSection(null);
 	newTransport.addSection(null);
-}
-
+	
+	return new Transport();
+	}
 }
 
 
