@@ -57,7 +57,7 @@ public class  SecurityConfigProperties extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.PUT, "/api/addresses/**").hasAuthority("AddressManager")
 			.antMatchers(HttpMethod.DELETE, "/api/addresses/**").hasAuthority("AddressManager")
 			.antMatchers(HttpMethod.POST, "/api/transports/**").hasAuthority("TransportManager")
-			.anyRequest().denyAll();
+			.anyRequest().authenticated();
 	
 		
 	}

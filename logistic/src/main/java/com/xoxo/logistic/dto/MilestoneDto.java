@@ -43,7 +43,7 @@ public class MilestoneDto {
 	List<AddressDto> addresses = new ArrayList<>();
 	
 	public MilestoneDto() {
-			
-		}
+	}
 
+	
 }

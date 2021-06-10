@@ -1,6 +1,7 @@
 package com.xoxo.logistic.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,6 +56,11 @@ public class Milestone {
 	private Section section;
 	
 	public Milestone(long l, Object object, LocalDateTime localDateTime) {
+	}
+	
+	public static List<Milestone> getAllMilestones() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

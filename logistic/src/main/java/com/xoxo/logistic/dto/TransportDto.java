@@ -5,11 +5,19 @@ import java.util.List;
 
 public class TransportDto {
 		
-	public TransportDto(long id, double price, List<SectionDto> sections) {
+	public TransportDto(long id, long expectedPrice, List<SectionDto> sections) {
 		super();
 		this.id = id;
-		this.price = price;
+		this.expectedPrice = expectedPrice;
 		this.sections = sections;
+	}
+
+	public long getExpectedPrice() {
+		return expectedPrice;
+	}
+
+	public void setExpectedPrice(long expectedPrice) {
+		this.expectedPrice = expectedPrice;
 	}
 
 	public long getId() {
@@ -18,14 +26,6 @@ public class TransportDto {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	public List<SectionDto> getSections() {
@@ -37,11 +37,13 @@ public class TransportDto {
 	}
 
 	private long id;
-	private double price;
+	private long expectedPrice;
 	
 	List<SectionDto> sections = new ArrayList<>();
 	
 	public TransportDto() {
 		
 	}
+
+	
 }

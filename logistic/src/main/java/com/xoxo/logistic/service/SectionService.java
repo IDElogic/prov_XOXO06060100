@@ -66,10 +66,8 @@ public class SectionService {
 	
 	@Transactional
 	public void deleteAll() {
-		getAllSections().stream().forEach(
-				s -> s.setFromMilestone());
-		getAllSections().stream().forEach(
-				s -> s.setToMilestone());
+		getAllSections().stream().forEach(s -> s.setFromMilestone());
+		getAllSections().stream().forEach(s -> s.setToMilestone());
 		sectionRepository.deleteAll();
 	}
 

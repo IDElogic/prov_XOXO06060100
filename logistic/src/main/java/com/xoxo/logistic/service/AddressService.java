@@ -38,34 +38,9 @@ private List<Address> allAddresss = new ArrayList<>();
 		allAddresss.add(new Address(4L,"SE","Götebörg","Vasagatan",41137,45L, 0.0, 0.0));
 	}
 
-
+	
 	public List<Address> getAllAddresses() {
 		return addressRepository.findAll();
-	}
-
-	public Optional<Address> findById(long id) {
-		return addressRepository.findById(id);
-	}
-
-	@Transactional
-	public void deleteAddress(long id) throws BadHttpRequest {
-		if (addressRepository.findById(id).isPresent()) {
-			if (!milestoneService.findByAddressId(id).isEmpty())
-				throw new BadHttpRequest();
-			addressRepository.deleteById(id);
-		}
-	}
-	
-	@Transactional
-	public void deleteAll() {
-		addressRepository.deleteAll();
-	}
-
-	@Transactional
-	public Address updateAddress(Address address) {
-		if (!addressRepository.existsById(address.getId()))
-			throw new EntityNotFoundException();
-		return addressRepository.save(address);
 	}
 	
 	@Transactional
@@ -101,13 +76,38 @@ private List<Address> allAddresss = new ArrayList<>();
 		return addressRepository.findAll(pageable) ;
 	}
 
-	public Address save(Address dtoToAddress) {
-		
+
+	public Optional<Address> findById(long id) {
+		return addressRepository.findById(id);
+	}
+
+	@Transactional
+	public void deleteAddress(long id) throws BadHttpRequest {
+		if (addressRepository.findById(id).isPresent()) {
+			if (!milestoneService.findByAddressId(id).isEmpty())
+				throw new BadHttpRequest();
+			addressRepository.deleteById(id);
+		}
+	}
+	
+	@Transactional
+	public void deleteAll() {
+		addressRepository.deleteAll();
+	}
+
+	@Transactional
+	public Address updateAddress(Address address) {
+		if (!addressRepository.existsById(address.getId()))
+			throw new EntityNotFoundException();
+		return addressRepository.save(address);
+	}
+	
+	
+	public Address save(Address dtoToAddress) {	
 		return null;
 	}
 
 	public Address update(Address dtoToAddress) {
-	
 		return null;
 	}	
 }

@@ -42,9 +42,6 @@ public class InitDBService {
 	
 	Transport newTransport = transportRepository.save(new Transport(0L, 0L, null));
 	newTransport.addSection(null);
-	newTransport.addSection(null);
-	newTransport.addSection(null);
-	
 	return new Transport();
 	}
 

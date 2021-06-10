@@ -41,15 +41,14 @@ public class JwtService {
 				.withIssuer(issuer)
 				.build()
 				.verify(jwtToken);
-			return new User(decodedJwt.getSubject(), "dummy", 
+				return new User(decodedJwt.getSubject(), "crazy", 
 					decodedJwt.getClaim(AUTH).asList(String.class)
-					.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
-					);
+					.stream().map(SimpleGrantedAuthority::new)
+					.collect(Collectors.toList()));
 		}
 
 	public static int getTimeoutMinutes() {
 		return TIMEOUT_MINUTES;
 	}
-
 }
 	

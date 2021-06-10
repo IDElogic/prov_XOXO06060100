@@ -3,11 +3,11 @@ package com.xoxo.logistic.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix="logistics")
+@ConfigurationProperties(prefix="transit")
 @Component
 public class TransportConfigProperties {
 
-		private PricePercent pricePercent = new PricePercent();
+		private PricePercent expectedPrice = new PricePercent();
 		private boolean test;
 
 		public static class PricePercent {
@@ -53,11 +53,11 @@ public class TransportConfigProperties {
 	}
 
 	public PricePercent getPricePercent() {
-		return pricePercent;
+		return expectedPrice;
 	}
 
-	public void setPricePercent(PricePercent pricePercent) {
-		this.pricePercent = pricePercent;
+	public void setPricePercent(PricePercent expectedPrice) {
+		this.expectedPrice = expectedPrice;
 	}
 
 	
@@ -67,9 +67,5 @@ public class TransportConfigProperties {
 
 	public void setTest(boolean test) {
 		this.test = test;
-	}
-
-	public Object getCutPrice() {		
-		return null;
 	}
 }

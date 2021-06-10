@@ -11,12 +11,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Transport {
 
-	public Transport(long id, double price, List<Section> section) {
-		super();
-		this.id = id;
-		this.price = price;
-		this.section = section;
-	}
 
 	public List<Section> getSection() {
 		return section;
@@ -34,20 +28,12 @@ public class Transport {
 		this.id = id;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	
 
 	@Id
 	@GeneratedValue
 	private long id;
-	private double price;
+	private long expectedPrice;
 	@OneToMany(mappedBy = "transport"/*, cascade = {CascadeType.MERGE, CascadeType.PERSIST}*/)
 	private List<Section> section = new ArrayList<>();
 
@@ -71,6 +57,22 @@ public class Transport {
 		
 		return null;
 	}
+
+	public long getExpectedPrice() {
+		return expectedPrice;
+	}
+
+	public void setExpectedPrice(long expectedPrice) {
+		this.expectedPrice = expectedPrice;
+	}
+
+	public Transport(long id, long expectedPrice, List<Section> section) {
+		super();
+		this.id = id;
+		this.expectedPrice = expectedPrice;
+		this.section = section;
+	}
+
 
 }
 
