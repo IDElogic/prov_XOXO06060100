@@ -11,15 +11,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Transport {
 
-
-	public List<Section> getSection() {
-		return section;
-	}
-
-	public void setSection(List<Section> section) {
-		this.section = section;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -28,24 +19,31 @@ public class Transport {
 		this.id = id;
 	}
 
-	
-
 	@Id
 	@GeneratedValue
 	private long id;
 	private long expectedPrice;
+	
 	@OneToMany(mappedBy = "transport"/*, cascade = {CascadeType.MERGE, CascadeType.PERSIST}*/)
-	private List<Section> section = new ArrayList<>();
+	private List<Section> sections = new ArrayList<>();
 
 	public Transport() {
 		
 	}	
 	
-	public void addSection(Section section) {
-		if(this.section==null)
-			this.section = new ArrayList<>();
-		this.section.add(section);
-		section.setTransport(this);
+	public Transport(long id, long expectedPrice, List<Section> sections) {
+		super();
+		this.id = id;
+		this.expectedPrice = expectedPrice;
+		this.sections = sections;
+	}
+
+	public List<Section> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
 	}
 
 	public Object setFromMilestone() {
@@ -66,12 +64,6 @@ public class Transport {
 		this.expectedPrice = expectedPrice;
 	}
 
-	public Transport(long id, long expectedPrice, List<Section> section) {
-		super();
-		this.id = id;
-		this.expectedPrice = expectedPrice;
-		this.section = section;
-	}
 
 
 }

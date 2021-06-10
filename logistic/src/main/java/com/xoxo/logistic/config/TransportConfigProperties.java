@@ -3,7 +3,7 @@ package com.xoxo.logistic.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix="transit")
+@ConfigurationProperties(prefix="logistics")
 @Component
 public class TransportConfigProperties {
 
@@ -49,23 +49,21 @@ public class TransportConfigProperties {
 		public void setMoreThan120minutes(int moreThan120minutes) {
 			this.moreThan120minutes = moreThan120minutes;
 		}
-
-	}
-
-	public PricePercent getPricePercent() {
-		return expectedPrice;
-	}
-
-	public void setPricePercent(PricePercent expectedPrice) {
-		this.expectedPrice = expectedPrice;
-	}
-
+		}
 	
-	public boolean isTest() {
-		return test;
-	}
-
-	public void setTest(boolean test) {
-		this.test = test;
-	}
+		public PricePercent getPricePercent() {
+			return expectedPrice;
+		}
+	
+		public void setPricePercent(PricePercent expectedPrice) {
+			this.expectedPrice = expectedPrice;
+		}
+		
+		public boolean isTest() {
+			return test;
+		}
+	
+		public void setTest(boolean test) {
+			this.test = test;
+		}
 }

@@ -1,8 +1,6 @@
 package com.xoxo.logistic.service;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -10,10 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xoxo.logistic.dto.TransportDto;
-import com.xoxo.logistic.model.Milestone;
 import com.xoxo.logistic.model.Section;
-import com.xoxo.logistic.model.Transport;
 import com.xoxo.logistic.repository.SectionRepository;
 
 @Service
@@ -25,16 +20,7 @@ public class SectionService {
 	@Autowired
 	MilestoneService milestoneService;
 	
-	public Section save(Section section) {
-		return sectionRepository.save(section);
-	}
-	
-	@Transactional
-	public Section update(Section section) {
-		return sectionRepository.save(section);
-	}
-	
-	public List<Section> findAllSection() {
+	public List<Section> getAllSections() {
 		return sectionRepository.findAll();
 	}
 
@@ -42,42 +28,38 @@ public class SectionService {
 		return sectionRepository.findById(id);
 	}
 	
-	public Optional<Section> findByTransportAndSectionNumber(long id,long sectionNumber){
-		return sectionRepository.findByTransportAndSectionNumber(id,sectionNumber );
+	public List<Section> findByTransportAndMilestone(long transportId, long milestoneId) {
+		return sectionRepository.findByTransportAndMilestone(transportId, milestoneId);
 	}
 	
-	public void delete(long id) {
-		sectionRepository.deleteById(id);
-	}
-
-	public List<Section>findAll() {	
-		return null;
+	public Optional<Section>findByTransportAndSectionNumber (long id, int sectionNumber) {
+		return sectionRepository.findByTransportAndSectionNumber(id, sectionNumber);
 	}
 	
-	public Collection<Transport> getAllSections() {
-		return null;
+	public Optional<Section> findByMilestoneId(long milestoneId) {
+		return sectionRepository.findByMilestoneId(milestoneId);
 	}
 	
-
 	@Transactional
-	public Section addANewSection(Section section) {
-		return sectionRepository.save(section);
+	public Section addNewSection(Section section) {
+		Section newSection = sectionRepository.save(section);
+		return newSection;
 	}
 	
 	@Transactional
 	public void deleteAll() {
-		getAllSections().stream().forEach(s -> s.setFromMilestone());
-		getAllSections().stream().forEach(s -> s.setToMilestone());
+		getAllSections().stream().forEach(s -> s.setFromMilestone(null));
+		getAllSections().stream().forEach(s -> s.setToMilestone(null));
 		sectionRepository.deleteAll();
 	}
 
-	public Map<Long, TransportDto> findByMilestone(long id, long milestoneId) {
-		return null;
-	}
-
-	public Optional<Milestone> findByMilestoneId(long milestoneId) {
-		return null;
-	}		
+//	public Optional<Transport> findByMilestone(long id, long milestoneId) {
+//		
+//		return null;
+//	}	
 }
+	
+	
+
 	
 	

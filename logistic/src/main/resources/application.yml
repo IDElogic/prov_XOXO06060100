@@ -2,27 +2,27 @@ spring:
   mvc:
    format:
      date-time:
-      yyyy-MM-dd HH:mm:ss
-            
+      yyyy-MM-dd HH:mm:ss            
   jpa:
    show-sql: true
    hibernate:
      ddl-auto: update
-   open-in-view: false
-  
+   open-in-view: false 
   datasource:
     url: jdbc:postgresql://localhost:5432/xoxo
     username: antares
-    password: ida 
-                   
-  pricePercent:   
-    lessThan30minutes: 10
-    lessThan60minutes: 20
-    lessThan120minutes: 30
-    moreThan120minutes: 40    
-    
+    password: ida     
 logging:
     level:
       org:
        springframework:
          security: debug 
+logistics:
+   test: false                  
+   pricePercent:   
+    lessThan30minutes:  0
+    lessThan60minutes:  20
+    lessThan120minutes: 30
+    moreThan120minutes: 40 
+    
+               

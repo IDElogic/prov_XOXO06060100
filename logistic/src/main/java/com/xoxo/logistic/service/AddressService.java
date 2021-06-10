@@ -101,13 +101,24 @@ private List<Address> allAddresss = new ArrayList<>();
 			throw new EntityNotFoundException();
 		return addressRepository.save(address);
 	}
-	
-	
-	public Address save(Address dtoToAddress) {	
+
+
+	public Address update(Address dtoToAddress) {
 		return null;
 	}
 
-	public Address update(Address dtoToAddress) {
+	public Address addNewAddress(Address dtoToAddress) {
+		
+		return null;
+	}
+
+	public Address ModifyAddress(Address dtoToAddress) {
+		
+		return null;
+	}
+
+	public Address save(Address dtoToAddress) {
+		
 		return null;
 	}	
 }

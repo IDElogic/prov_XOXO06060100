@@ -10,8 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Section {
 	
-
-	public Section(long id, long sectionNumber, Milestone fromMilestone, Milestone toMilestone, Transport transport) {
+	public Section(long id, int sectionNumber, Milestone fromMilestone, Milestone toMilestone, Transport transport) {
 		super();
 		this.id = id;
 		this.sectionNumber = sectionNumber;
@@ -20,20 +19,20 @@ public class Section {
 		this.transport = transport;
 	}
 
+	public int getSectionNumber() {
+		return sectionNumber;
+	}
+
+	public void setSectionNumber(int sectionNumber) {
+		this.sectionNumber = sectionNumber;
+	}
+
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getSectionNumber() {
-		return sectionNumber;
-	}
-
-	public void setSectionNumber(long sectionNumber) {
-		this.sectionNumber = sectionNumber;
 	}
 
 	public Milestone getFromMilestone() {
@@ -63,7 +62,7 @@ public class Section {
 	@Id
 	@GeneratedValue
 	private long id;
-	private long sectionNumber;
+	private int sectionNumber;
 	@OneToOne
 	Milestone fromMilestone;
 	@OneToOne

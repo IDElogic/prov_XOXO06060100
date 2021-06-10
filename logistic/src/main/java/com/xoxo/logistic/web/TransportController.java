@@ -24,15 +24,18 @@ public class TransportController {
 	@Autowired
 	SectionService sectionService;
 	
-
+	@Autowired
+	MilestoneService milestoneService;
+	
+	
 	@PostMapping("/{id}/delay")
-	public void addDelayToTransport(@PathVariable long id, @RequestBody DelayDto delay) {
-		MilestoneService milestoneService = new MilestoneService();
-		if (transportService.findById(id).isEmpty()|| 
-			  milestoneService.findById(delay.getMilestoneId()).isEmpty())
-			    throw new ResponseStatusException(HttpStatus.NOT_FOUND);	
-		if (sectionService.findByMilestone(id, delay.getMilestoneId()).isEmpty())
-			    throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+	public void addDelayToTransport(@PathVariable Long id, @RequestBody DelayDto delay) {
+		if (transportService.findById(id).isEmpty() || milestoneService
+			.findById(delay.getMilestoneId()).isEmpty())
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		if (sectionService.findByTransportAndMilestone(id, delay.getMilestoneId()).isEmpty())
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		transportService.registerDelay(id,delay.getMilestoneId(),delay.getDelayInMinutes());
 	}
 }
 

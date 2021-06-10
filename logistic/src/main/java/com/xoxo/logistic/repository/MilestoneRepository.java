@@ -16,8 +16,4 @@ public interface MilestoneRepository extends JpaRepository<Milestone, Long>{
 	public List<Milestone> findAllWithAddresses();
 	
 	List<Milestone> findByAddressId(long id);
-
-	
-	
-
 }

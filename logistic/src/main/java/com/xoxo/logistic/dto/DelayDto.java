@@ -29,9 +29,4 @@ public class DelayDto {
 	
 	public DelayDto() {
 	}
-
-	
-	
-	 
-
 }

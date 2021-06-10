@@ -1,5 +1,32 @@
-{"properties": [{
-  "name": "jpa.show-sql",
-  "type": "java.lang.String",
-  "description": "A description for 'jpa.show-sql'"
-}]}
+{"properties": [
+  {
+    "name": "jpa.show-sql",
+    "type": "java.lang.String",
+    "description": "A description for 'jpa.show-sql'"
+  },
+  {
+    "name": "logistics.test",
+    "type": "java.lang.String",
+    "description": "A description for 'logistics.test'"
+  },
+  {
+    "name": "logistics.pricePercent.less-than30minutes",
+    "type": "java.lang.String",
+    "description": "A description for 'logistics.pricePercent.less-than30minutes'"
+  },
+  {
+    "name": "logistics.pricePercent.lessThan60minutes",
+    "type": "java.lang.String",
+    "description": "A description for 'logistics.pricePercent.lessThan60minutes'"
+  },
+  {
+    "name": "logistics.pricePercent.lessThan120minutes",
+    "type": "java.lang.String",
+    "description": "A description for 'logistics.pricePercent.lessThan120minutes'"
+  },
+  {
+    "name": "logistics.pricePercent.moreThan120minutes",
+    "type": "java.lang.String",
+    "description": "A description for 'logistics.pricePercent.moreThan120minutes'"
+  }
+]}

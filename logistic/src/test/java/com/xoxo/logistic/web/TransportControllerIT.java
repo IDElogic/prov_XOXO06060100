@@ -63,7 +63,6 @@ public class TransportControllerIT {
 		transportId = initDBService.initDb().getId();
 	}
 	
-	/*1*/
 	@Test
 	void testThatCannotAddDelayIfNoAuthority() throws Exception {
 		String jwtToken = loginAddressManager();
@@ -87,7 +86,7 @@ public class TransportControllerIT {
 			return loginWithJwtOk("addressManager", "passAddress");
 		}
 		
-	/*ha nincs letezö milestone vagy transport*/
+	
 	@Test
 	void testThatCannotAddDelayWhenNotFoundMilestoneOrTransport() throws Exception {
 		String jwtToken = loginTransportUser();
@@ -109,7 +108,7 @@ public class TransportControllerIT {
 				.isNotFound();
 	}
 		
-	/*ha a megadott milestone nem resze a transportnak*/	
+	
 	@Test
 	void testThatFoundMilestoneIsNotPartOfTransport() throws Exception {String jwtToken = loginTransportUser();
 		List<Milestone> milestones = milestoneService.getAllMilestones();
@@ -129,7 +128,7 @@ public class TransportControllerIT {
 			.isEqualTo(HttpStatus.BAD_REQUEST);
 	}
 	
-	/*ha a delay kevesebb, mint 30 perc, akkor arcsokkenes*/
+	
 	@Test
 	void testThatExpectedPriceWhenDelayLessThan30minutes() throws Exception {String jwtToken = loginTransportUser();
 			List<Milestone> milestones = milestoneService.getAllMilestones();
@@ -152,7 +151,7 @@ public class TransportControllerIT {
 			.expectStatus()
 			.isOk();
 	}
-	/*ha a delay kevesebb, mint 60 perc, akkor arcsokkenes*/
+
 	@Test
 	void testThatExpectedPriceWhenDelayLessThan60minutes() throws Exception {String jwtToken = loginTransportUser();
 		List<Milestone> milestones = milestoneService.getAllMilestones();
@@ -169,7 +168,7 @@ public class TransportControllerIT {
 		return loginWithJwtOk("transportUser", "passTransport");
 	}
 
-	/*ha a delay kevesebb, mint 120 perc, akkor arcsokkenes*/
+	
 	@Test
 	void testThatExpectedPriceWhenDelayLessThan120minutes() throws Exception {String jwtToken = loginTransportUser();
 		List<Milestone> milestones = milestoneService.getAllMilestones();
@@ -182,7 +181,7 @@ public class TransportControllerIT {
 				(long) (originalPrice * (100 - config.getPricePercent().getLessThan120minutes()) * 0.01));
 	}
 	
-	/*ha a delay több, mint 120 perc, akkor arcsokkenes*/
+	
 	@Test
 	void testThatExpectedPriceWhenDelayMoreThan120minutes() throws Exception {
 		String jwtToken = loginTransportUser();
@@ -197,7 +196,7 @@ public class TransportControllerIT {
 				(long) (originalPrice * (100 - config.getPricePercent().getMoreThan120minutes()) * 0.01));
 	}
 					
-	/*a section kezdö milestone a vegsö milestonet is modositani kell a kesessel*/
+	
 	@Test
 	void testThatModifyMilestoneAtBeginningOfSectionModifyAtTheEndToo()
 			throws Exception {
@@ -214,7 +213,7 @@ public class TransportControllerIT {
 		assertThat(originalMilestones.get(2).getPlannedTime()).isEqualTo(modifiedMilestones.get(2).getPlannedTime());
 	}
 
-	/*a section kezdö milestone a vegsö milestonet is modositani kell a kesessel*/
+	
 	@Test
 	void testModifyMilestoneAtTheEndOfASectionThanModifyTheNextBeginningToo()
 			throws Exception {
@@ -254,21 +253,21 @@ public class TransportControllerIT {
 					.getResponseBody();
 		}
 		
-//	@Test
-//	void testThatWeCannotLoginWithBadCredentials() throws Exception {
-//		loginWithJwtNotOk("baduser", "badpassword");
-//		loginWithJwtNotOk("admin", "badpassword");
-//		loginWithJwtNotOk("baduser", "passAdmin");
-//	}
-//	
-//		private void loginWithJwtNotOk(String username, String password) {
-//		LoginDto loginDto = new LoginDto(username, password);
-//		webTestClient
-//			.post()
-//			.uri(LOGIN_URI)
-//			.bodyValue(loginDto)
-//			.exchange()
-//			.expectStatus()
-//			.isForbidden();
-//		}
+	@Test
+	void testThatWeCannotLoginWithBadCredentials() throws Exception {
+		loginWithJwtNotOk("baduser", "badpassword");
+		loginWithJwtNotOk("admin", "badpassword");
+		loginWithJwtNotOk("baduser", "passAdmin");
+	}
+	
+		private void loginWithJwtNotOk(String username, String password) {
+		LoginDto loginDto = new LoginDto(username, password);
+		webTestClient
+			.post()
+			.uri(LOGIN_URI)
+			.bodyValue(loginDto)
+			.exchange()
+			.expectStatus()
+			.isForbidden();
+		}
 }

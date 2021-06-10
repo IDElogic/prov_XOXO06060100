@@ -1,6 +1,7 @@
 package com.xoxo.logistic.web;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ import com.xoxo.logistic.dto.AddressByExampleDto;
 import com.xoxo.logistic.dto.AddressDto;
 import com.xoxo.logistic.mapper.AddressMapper;
 import com.xoxo.logistic.model.Address;
-import com.xoxo.logistic.repository.AddressRepository;
 import com.xoxo.logistic.service.AddressService;
 
 import javassist.tools.web.BadHttpRequest;
@@ -41,8 +41,8 @@ public class AddressController {
 	@Autowired
 	AddressMapper addressMapper;
 	
-	@Autowired
-	AddressRepository addressRepository;
+//	@Autowired
+//	AddressRepository addressRepository;
 		
 			
 		@GetMapping
@@ -84,17 +84,12 @@ public class AddressController {
 		
 		@PostMapping(value = "/search")
 		public ResponseEntity<List<AddressDto>> findByExample(
-				@RequestBody AddressByExampleDto example, 
-				@PageableDefault(direction = Sort.Direction.ASC, page = 0, size = Integer.MAX_VALUE, sort = "id") Pageable pageable
-				){
-			
+			@RequestBody AddressByExampleDto example, 
+			@PageableDefault(direction = Sort.Direction.ASC, page = 0, size = Integer.MAX_VALUE, sort = "id") Pageable pageable){
 			Page<Address> result = addressService.findAddressesByExample(example, pageable);
-			
 			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.set("X-Total-Count", 
-				      Long.toString(result.getTotalElements()));
-			
-			return ResponseEntity.ok()
+			responseHeaders.set("X-Total-Count",Long.toString(result.getTotalElements()));
+				return ResponseEntity.ok()
 					.headers(responseHeaders)
 					.body(addressMapper.addressesToDtos(result.getContent()));
 		}
@@ -103,27 +98,26 @@ public class AddressController {
 			return addressService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));				
 		}
 		
-//		@PostMapping
-//		@PreAuthorize("hasAuthority('AddressManager')")
-//		public AddressDto addNewAddress(@RequestBody @Valid AddressDto addressDto) {
-//			if (addressDto.getId() != null && addressDto.getId() != 0L)
-//				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-//			
-//			return addressMapper.addressToDto(addressService.addNewAddress(addressMapper.dtoToAddress(addressDto)));
-//		}
-//			
-//		@PutMapping("/{id}")
-//		@PreAuthorize("hasAuthority('AddressManager')")
-//		public AddressDto modifyAddress(@RequestBody @Valid AddressDto addressDto, @PathVariable long id) {
-//			if (addressDto.getId() != null && addressDto.getId() != 0 && addressDto.getId() != id)
-//				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-//			addressDto.setId(id);
-//			AddressDto modifiedAddress;
-//			try {
-//				modifiedAddress = addressMapper.addressToDto(addressService.ModifyAddress(addressMapper.dtoToAddress(addressDto)));
-//			} catch (EntityNotFoundException e) {
-//				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//			}
-//			return modifiedAddress;
-//		}
+		@PostMapping
+		@PreAuthorize("hasAuthority('AddressManager')")
+		public AddressDto addNewAddress(@RequestBody @Valid AddressDto addressDto) {
+			if (addressDto.getId() != 0 && addressDto.getId() != 0L)
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);	
+			return addressMapper.addressToDto(addressService.addNewAddress(addressMapper.dtoToAddress(addressDto)));
+		}
+			
+		@PutMapping("/{id}")
+		@PreAuthorize("hasAuthority('AddressManager')")
+		public AddressDto modifyAddress(@RequestBody @Valid AddressDto addressDto, @PathVariable long id) {
+			if (addressDto.getId() != 0 && addressDto.getId() != 0 && addressDto.getId() != id)
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+			addressDto.setId(id);
+			AddressDto modifiedAddress;
+			try {
+				modifiedAddress = addressMapper.addressToDto(addressService.ModifyAddress(addressMapper.dtoToAddress(addressDto)));
+			} catch (EntityNotFoundException e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			}
+			return modifiedAddress;
+		}
 }

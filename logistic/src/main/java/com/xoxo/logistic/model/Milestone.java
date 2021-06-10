@@ -1,24 +1,17 @@
 package com.xoxo.logistic.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Milestone {
-	public Milestone(long id, Address address, LocalDateTime plannedTime, Section section) {
-		super();
-		this.id = id;
-		this.address = address;
-		this.plannedTime = plannedTime;
-		this.section = section;
-	}
+	
+
 	public long getId() {
 		return id;
 	}
@@ -37,12 +30,36 @@ public class Milestone {
 	public void setPlannedTime(LocalDateTime plannedTime) {
 		this.plannedTime = plannedTime;
 	}
-	public Section getSection() {
-		return section;
+
+	public Milestone(long id, Address address, LocalDateTime plannedTime) {
+		super();
+		this.id = id;
+		this.address = address;
+		this.plannedTime = plannedTime;
 	}
-	public void setSection(Section section) {
-		this.section = section;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Milestone other = (Milestone) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@Id
 	@GeneratedValue
 	private long id;
@@ -52,15 +69,7 @@ public class Milestone {
 	private Address address;
 	private LocalDateTime plannedTime;
 	
-	@OneToOne
-	private Section section;
-	
-	public Milestone(long l, Object object, LocalDateTime localDateTime) {
+	public Milestone() {
+		
 	}
-	
-	public static List<Milestone> getAllMilestones() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

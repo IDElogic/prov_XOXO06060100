@@ -2,7 +2,6 @@ package com.xoxo.logistic.dto;
 
 public class AddressByExampleDto {
 	
-
 	public AddressByExampleDto(String countryCode, String city, String streetAddress, long postalCode) {
 		super();
 		this.countryCode = countryCode;
@@ -10,7 +9,6 @@ public class AddressByExampleDto {
 		this.streetAddress = streetAddress;
 		this.postalCode = postalCode;
 	}
-
 
 	public String getCountryCode() {
 		return countryCode;
